@@ -1,15 +1,17 @@
 import string
 
 def is_pangram(sentence):
-    all_letters = string.ascii_letters
+    all_printables = string.printable
     
-    # loop over the all_letters
-    # check if the sentences containts all letters from all_letters
-    # if yes: return true
-    # else: return false
-
-    for letter in all_letters:
-        if letter in sentence:
-            return True
-        else:
-            return False
+    # loop over all_printables
+            # if char is in sentence and all printables
+            # return true
+            # else:
+            # false
+   
+    for char in all_printables:
+        for char in sentence:
+            if char in sentence and char in all_printables:
+                return True
+            else:
+                return False
