@@ -1,31 +1,35 @@
 import random
 import string
-"""
-Didn't quite understand what other methods should I have and what they should do. Currently it generates random names. 
-I'll revisit
-"""
-class Robot(object):
-    def __init__(self):  
-        pass
 
-    def name(self, seed = string.ascii_letters):
+class Robot(object):
+    used_names = set()
+    def __init__(self): 
+        
+        self.name = self.reset() 
+    
+    def reset(self):
+        robot = Robot.generate_name()
+        if robot not in Robot.used_names:
+            Robot.used_names.add(robot)
+            robot = Robot.generate_name()
+        self.name = robot
+        return self.name
+
+    @classmethod
+    def generate_name(cls):
 
         robot_name = ''
         for _ in range(2):
-            letters =  random.choices(seed) # this generates list
-            robot_name += letters[0].upper()
+            letters =  random.choices(string.ascii_uppercase) # this generates list
+            robot_name += letters[0]
 
         for _ in range(3):
             digits = random.choices(string.digits)  # this generates list
             robot_name += digits[0]
         return robot_name
 
-    # def reset(self):
-    #     return self.name(self)
-
-
-
 if __name__ == '__main__':
     rob = Robot()
-    print(rob.name())
-    # print(rob.reset())
+    # print(rob.generate_name())
+    print(f"old name is {rob.generate_name()}, resetted: {rob.reset()}")
+    print(rob.used_names)
