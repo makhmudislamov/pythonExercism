@@ -16,6 +16,6 @@ def classify(number):
         print('deficient')
     else:
         print('abundant')
-
+# this function is O(n) and needs to be done faster
 
 classify(33550336)
